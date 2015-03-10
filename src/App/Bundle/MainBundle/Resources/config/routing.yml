@@ -1,0 +1,2 @@
+app_account:
+    resource: @MainBundle/Resources/config/account/routing.yml
