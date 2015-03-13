@@ -1,0 +1,18 @@
+App\Bundle\MainBundle\Entity\Account:
+    type: entity
+    table: account
+    repositoryClass: App\Bundle\MainBundle\Entity\AccountRepository
+    id:
+        identifier:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        username:
+            type: string
+            length: 255
+        credentials:
+            type: string
+            length: 255
+        domain:
+            type: string
+            length: 255

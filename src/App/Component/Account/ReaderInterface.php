@@ -15,7 +15,7 @@ interface ReaderInterface
      *
      * @return Account
      *
-     * @throws \App\Component\Account\Exception\InvalidIdentifierException
+     * @throws \App\Component\Account\Exception\NotFoundException
      */
     public function find($identifier);
 }
