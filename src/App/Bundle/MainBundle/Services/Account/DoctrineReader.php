@@ -41,7 +41,7 @@ class DoctrineReader implements ReaderInterface
             throw new NotFoundException(sprintf('Account with the identifier \'%s\' not found.', $identifier));
         }
 
-        return new Account($identifier, $entity->getUsername(), $entity->getPassword(), $entity->getDomain());
+        return new Account($identifier, $entity->getUsername(), $entity->getCredentials(), $entity->getDomain());
     }
 
     /**

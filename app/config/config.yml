@@ -11,7 +11,7 @@ framework:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
     form:            ~
-    csrf_protection: ~
+    csrf_protection: false
     validation:      { enable_annotations: true }
     templating:
         engines: ['twig']
@@ -73,6 +73,8 @@ swiftmailer:
     spool:     { type: memory }
 
 fos_rest:
+    exception: false
+    body_listener: true
     format_listener:
         rules:
             - { path: '^/', priorities: [ 'json'], fallback_format: json, prefer_extension: false }

@@ -10,7 +10,7 @@ Here is the list of all methods provided by this API.
 
 * method: **POST**
 * URL: _/account_
-* parameters: _username, credentials_
+* parameters: `{"account":{"username":"user1","credentials":"3NC0D3DP455W0RD","domain":"default"}}`
 
 Create an account with the given username and credentials.
 

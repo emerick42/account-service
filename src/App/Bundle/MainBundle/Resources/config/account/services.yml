@@ -2,3 +2,9 @@ services:
     app_main.account.reader:
         class: App\Bundle\MainBundle\Services\Account\DoctrineReader
         arguments: [@doctrine.orm.entity_manager]
+    app_main.account.writer:
+        class: App\Bundle\MainBundle\Services\Account\DoctrineWriter
+        arguments: [@doctrine.orm.entity_manager]
+    app_main.account.command.factory:
+        class: App\Bundle\MainBundle\Factory\Account\Command
+        arguments: [@doctrine.orm.entity_manager]

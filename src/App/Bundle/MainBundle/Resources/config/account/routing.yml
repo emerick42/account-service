@@ -4,3 +4,9 @@ app_account_get:
     requirements:
         _method: GET
         identifier: "\d+"
+
+app_account_post:
+    pattern:  /account
+    defaults: { _controller: MainBundle:Account:post, _format: ~ }
+    requirements:
+        _method: POST
