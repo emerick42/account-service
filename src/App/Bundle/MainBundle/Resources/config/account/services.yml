@@ -8,3 +8,8 @@ services:
     app_main.account.command.factory:
         class: App\Bundle\MainBundle\Factory\Account\Command
         arguments: [@doctrine.orm.entity_manager]
+    app_main.account.validator.unique_account:
+        class: App\Bundle\MainBundle\Validator\Constraints\Account\UniqueValidator
+        arguments: [@app_main.account.reader]
+        tags:
+            - { name: validator.constraint_validator, alias: unique_account }

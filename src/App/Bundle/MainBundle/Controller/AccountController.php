@@ -27,7 +27,7 @@ class AccountController extends FOSRestController
         $reader = $this->getReader();
 
         try {
-            $user = $reader->find($identifier);
+            $user = $reader->findByIdentifier($identifier);
         } catch (InvalidIdentifierException $exception) {
             throw new NotFoundHttpException('Account not found');
         }
@@ -51,7 +51,6 @@ class AccountController extends FOSRestController
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            // @TODO: create the account using the writer service
             $factory = $this->getCommandFactory();
             $command = $factory->makeCreationFrom($formAccount);
             $writer  = $this->getWriter();

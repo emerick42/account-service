@@ -2,6 +2,7 @@
 
 namespace App\Bundle\MainBundle\Services\Account;
 
+use App\Bundle\MainBundle\Entity\Account as AccountEntity;
 use App\Component\Account\Account;
 use App\Component\Account\ReaderInterface;
 use App\Component\Account\Exception\NotFoundException;
@@ -32,7 +33,7 @@ class DoctrineReader implements ReaderInterface
     /**
      * {@inheritdoc}
      */
-    public function find($identifier)
+    public function findByIdentifier($identifier)
     {
         $accountRepository = $this->getAccountRepository();
         $entity            = $accountRepository->findByIdentifier($identifier);
@@ -41,7 +42,22 @@ class DoctrineReader implements ReaderInterface
             throw new NotFoundException(sprintf('Account with the identifier \'%s\' not found.', $identifier));
         }
 
-        return new Account($identifier, $entity->getUsername(), $entity->getCredentials(), $entity->getDomain());
+        return $this->createAccount($entity);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findByUsername($username)
+    {
+        $accountRepository = $this->getAccountRepository();
+        $entity            = $accountRepository->findByUsername($username);
+
+        if ($entity === null) {
+            throw new NotFoundException(sprintf('Account with the username \'%s\' not found.', $username));
+        }
+
+        return $this->createAccount($entity);
     }
 
     /**
@@ -52,5 +68,22 @@ class DoctrineReader implements ReaderInterface
     private function getAccountRepository()
     {
         return $this->entityManager->getRepository('App\Bundle\MainBundle\Entity\Account');
+    }
+
+    /**
+     * Instantiate an account object from the given entity
+     *
+     * @param AccountEntity $entity
+     *
+     * @return Account
+     */
+    private function createAccount(AccountEntity $entity)
+    {
+        return new Account(
+            $entity->getIdentifier(),
+            $entity->getUsername(),
+            $entity->getCredentials(),
+            $entity->getDomain()
+        );
     }
 }

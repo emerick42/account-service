@@ -2,10 +2,13 @@
 
 namespace App\Bundle\MainBundle\Form\Model;
 
+use App\Bundle\MainBundle\Validator\Constraints\Account as AccountAssert;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * The data transfer object for account forms
+ *
+ * @AccountAssert\Unique()
  */
 class Account
 {

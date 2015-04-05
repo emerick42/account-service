@@ -17,5 +17,17 @@ interface ReaderInterface
      *
      * @throws \App\Component\Account\Exception\NotFoundException
      */
-    public function find($identifier);
+    public function findByIdentifier($identifier);
+
+    /**
+     * Find an account by its username. Throw an exception when there is no
+     * existing account for the givenusername
+     *
+     * @param string
+     *
+     * @return Account
+     *
+     * @throws \App\Component\Account\Exception\NotFoundException
+     */
+    public function findByUsername($username);
 }

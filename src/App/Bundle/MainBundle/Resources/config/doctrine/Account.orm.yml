@@ -10,6 +10,7 @@ App\Bundle\MainBundle\Entity\Account:
         username:
             type: string
             length: 255
+            unique: true
         credentials:
             type: string
             length: 255

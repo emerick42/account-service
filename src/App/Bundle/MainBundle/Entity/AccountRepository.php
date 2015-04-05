@@ -29,4 +29,25 @@ class AccountRepository extends EntityRepository
 
         return $account;
     }
+
+    /**
+     * Retrieve the account with the given username
+     *
+     * @param string $username
+     *
+     * @return Account|null
+     */
+    public function findByUsername($username)
+    {
+        $queryBuilder = $this->createQueryBuilder('account');
+
+        $queryBuilder
+            ->where('account.username = :username')
+            ->setParameter('username', $username)
+        ;
+
+        $account = $queryBuilder->getQuery()->getOneOrNullResult();
+
+        return $account;
+    }
 }
