@@ -18,6 +18,6 @@ Create an account with the given username and credentials.
 
 * method: **GET**
 * URL: _/account/{identifier}_
-* URL: _/account/{username}/{credentials}_
+* URL: _/account/{identifier}/{credentials}_
 
 Retrieve all informations about an account. Can be used to validate a user.
