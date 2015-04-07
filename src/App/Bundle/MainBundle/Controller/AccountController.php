@@ -4,7 +4,7 @@ namespace App\Bundle\MainBundle\Controller;
 
 use App\Bundle\MainBundle\Form\Model\Account as FormAccount;
 use App\Bundle\MainBundle\Form\Type\AccountType;
-use App\Component\Account\Exception\InvalidIdentifierException;
+use App\Component\Account\Exception\NotFoundException;
 use FOS\RestBundle\Controller\FOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -28,7 +28,7 @@ class AccountController extends FOSRestController
 
         try {
             $user = $reader->findByIdentifier($identifier);
-        } catch (InvalidIdentifierException $exception) {
+        } catch (NotFoundException $exception) {
             throw new NotFoundHttpException('Account not found');
         }
 
